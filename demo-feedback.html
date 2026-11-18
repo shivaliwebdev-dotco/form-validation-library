@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101322">
+  <title>Feedback · Form Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <nav class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark">✳</span> form<span>lab</span></a>
+      <span class="top-tag">DEMO 02 / FEEDBACK</span>
+    </nav>
+
+    <section class="intro feedback-intro">
+      <p class="eyebrow"><span class="pulse purple"></span> YOUR VOICE, PLEASE</p>
+      <h1>Tell us the <span>real deal.</span></h1>
+      <p class="intro-copy">The compliments, the constructive bits, even the tiny details — we’re all ears. Tell us what you really think.</p>
+      <div class="mini-stats"><span>♡ No judgement</span><span>⌁ Takes 2 minutes</span><span>✦ Actually read by humans</span></div>
+    </section>
+
+    <section class="form-card feedback-card">
+      <div class="card-heading">
+        <div><p class="eyebrow">SPILL THE TEA ☕</p><h2>Feedback form</h2></div>
+        <span class="step-chip violet">02 <i>—</i> 03</span>
+      </div>
+      <form id="feedbackForm" novalidate>
+        <div class="error-summary" data-error-summary role="alert" aria-live="polite" hidden></div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="feedbackName">Your name <b>*</b></label>
+            <input id="feedbackName" name="Name" type="text" placeholder="What should we call you?" data-label="Name" data-validate="required|minLength:2" autocomplete="name">
+            <small class="field-error" data-error-for="Name" hidden></small>
+          </div>
+          <div class="field">
+            <label for="feedbackEmail">Email <b>*</b></label>
+            <input id="feedbackEmail" name="Email" type="email" placeholder="you@example.com" data-label="Email" data-validate="required|email" autocomplete="email">
+            <small class="field-error" data-error-for="Email" hidden></small>
+          </div>
+          <div class="field">
+            <label for="rating">How was your experience? <b>*</b></label>
+            <select id="rating" name="Rating" data-label="Rating" data-validate="required">
+              <option value="">Pick a vibe</option><option value="5">Loved it ✨</option><option value="4">Pretty good</option><option value="3">It was okay</option><option value="2">Could be better</option><option value="1">Not for me</option>
+            </select>
+            <small class="field-error" data-error-for="Rating" hidden></small>
+          </div>
+          <div class="field">
+            <label for="recommend">Would you recommend us?</label>
+            <select id="recommend" name="Recommend"><option value="">Choose one</option><option>Absolutely</option><option>Maybe</option><option>Not yet</option></select>
+          </div>
+          <div class="field full">
+            <label for="comments">Your thoughts <b>*</b></label>
+            <textarea id="comments" name="Comments" rows="5" placeholder="The good, the bad, the random detail we missed..." data-label="Your thoughts" data-validate="required|minLength:15|noLinks"></textarea>
+            <small class="field-error" data-error-for="Comments" hidden></small>
+            <span class="field-hint">A little detail helps us understand what you mean (15 characters minimum).</span>
+          </div>
+          <div class="field">
+            <label for="age">Your age (optional)</label>
+            <input id="age" name="Age" type="number" min="13" max="100" placeholder="13–100" data-label="Age" data-validate="range:13,100">
+            <small class="field-error" data-error-for="Age" hidden></small>
+          </div>
+          <div class="field">
+            <label for="visitDate">When did you visit? (optional)</label>
+            <input id="visitDate" name="Visit date" type="date" data-label="Visit date">
+            <small class="field-error" data-error-for="Visit date" hidden></small>
+          </div>
+        </div>
+        <div class="form-footer">
+          <p><span class="required-dot">*</span> Required fields</p>
+          <button class="submit-btn violet-btn" type="submit">Send my thoughts <span>↗</span></button>
+        </div>
+        <p class="success-note" data-form-success role="status" hidden></p>
+      </form>
+    </section>
+    <footer class="site-footer"><a href="demo-booking.html">← Back to booking form</a><span>THANKS FOR MAKING IT BETTER</span></footer>
+  </main>
+  <script src="js/validator.js"></script>
+  <script>
+    // A separate custom rule, registered without changing validator.js.
+    Validator.addRule("noLinks", (value) =>
+      !value || !/(https?:\/\/|www\.)/i.test(value) || "Please remove links from your feedback."
+    );
+    const feedbackValidator = new Validator(document.querySelector("#feedbackForm"));
+  </script>
+</body>
+</html>
